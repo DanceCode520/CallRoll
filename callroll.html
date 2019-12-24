@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>点名</title>
+    <style>
+        .cover {
+            margin: 40px auto;
+            border: 1px solid gray;
+            border-radius: 5px;
+            padding: 5px;
+            text-align: center;
+            width: 20%;
+        }
+        
+        #stuname {
+            padding: 5px;
+            font-size: 25px;
+            font-weight: bold;
+            color: red;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cover">
+        <div id="stuname"></div>
+        <button id="startEnd" onclick="startEndBut()">开始</button>
+    </div>
+
+    <script>
+        let but = document.getElementById("startEnd");
+        let sname = document.getElementById("stuname");
+        const snameArr = ["李小萌", "卢增强", "张俊晓", "王子建", "李婷婷", "宋子文", "郭大民",
+            "刘德华", "荣飞越", "幺文学", "陆雪琪", "狄云", "杨过", "范县", "朱元璋", "划过新",
+            "梦梅奇", "宋江", "但丁", "维吉尔", "尼禄", "奎托斯", "潘多拉"
+        ]
+        let timer;
+        sname.innerText = snameArr[Math.floor(Math.random() * snameArr.length)];
+
+        function startEndBut() {
+            if (but.innerText == "开始") {
+                but.innerText = "停止";
+                timer = setInterval(function() {
+                    let index = Math.floor(Math.random() * snameArr.length);
+                    console.log("index==" + index)
+                    sname.innerText = snameArr[index]
+                }, 100)
+            } else {
+                but.innerText = "开始"
+                clearInterval(timer);
+            }
+        }
+    </script>
+</body>
+
+</html>
