@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="full-screen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>点名</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%
+        }
+
+        body {
+            font-family: "华文细黑";
+            background: url("./imgs/5.jpg") no-repeat;
+            background-size: 100%;
+        }
+
+        @media screen and (max-width: 600px) {
+            body {
+                background-size: 180%;
+            }
+        }
+
+        .cover {
+            margin: 10px auto;
+            border: 2px solid gray;
+            border-radius: 5px;
+            padding: 15px;
+            text-align: center;
+            width: 50%;
+        }
+
+        #stuname {
+            padding: 5px;
+            font-size: 145px;
+            font-weight: bold;
+            color: red;
+            margin-bottom: 5px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size:78px;
+        }
+
+        .cover button {
+            width: 35%;
+            height: 50px;
+            background: #4490e8;
+            border: none;
+            border-radius: 10px;
+            margin-bottom: 13px;
+            outline: none;
+            font-size: larger;
+            color: white;
+        }
+        .cover button:active{
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+<h1>五中七年七班点名系统</h1>
+<div class="cover">
+    <div id="stuname"></div>
+    <button id="startEnd" onclick="startEndBut()">开&nbsp&nbsp&nbsp始</button>
+</div>
+
+<script>
+    let but = document.getElementById("startEnd");
+    let sname = document.getElementById("stuname");
+    const snameArr = ["倪志国","邵云成","李欣雅","王英奇","王美喆","陈宇","张皓宇","贾昊冉","李宇飞","吴天磊","杨悦"
+        ,"胡嘉成","李佳音","吴蓓贝","李伟凡","王世博","张天思","李晓伟","高晶","张明宇","张明慧","彭永欣","张思瑶","王欣蕾","杨浩"
+        ,"段毅殳","刘雨峰","杨晓芳","田源","张润泽","侯明希","谢可欣","王天翔","姚嘉俊","赵立鑫"
+        ,"赵智浩","佟欣宇","赵玉玲","王磊","姚明阳","高明杰","宿文涛","曲丽娜","陈文颖"]
+    let timer;
+    sname.innerText = snameArr[Math.floor(Math.random() * snameArr.length)];
+
+    function startEndBut() {
+        if (but.innerText.replace(/\s+/g,"") == "开始") {
+            but.innerText = "停   止";
+            timer = setInterval(function() {
+                let index = Math.floor(Math.random() * snameArr.length);
+                sname.innerText = snameArr[index]
+            }, 100)
+        } else {
+            but.innerText = "开   始"
+            clearInterval(timer);
+        }
+    }
+</script>
+</body>
+
+</html>

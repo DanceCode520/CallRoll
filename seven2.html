@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>七年七班</title>
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+            padding-top: 10px;
+            background: url("./imgs/5.jpg") no-repeat;
+            background-size: 100%;
+        }
+
+        .cov {
+            width: 100%;
+            height: 130px;
+            border-radius: 10px;
+            border: 1px solid lightgray;
+            overflow: hidden;
+        }
+
+        .cover1 {
+            background-color: #0880d7;
+            box-shadow: 6px 6px 5px #888888;
+            color: white;
+            font-weight: bolder;
+            font-size: 40px;
+            text-align: center;
+            vertical-align: middle;
+            height: 130px;
+            line-height: 130px;
+            float: left;
+            margin: 0.3%;
+            width: 8.36%;
+            cursor: pointer;
+        }
+
+        .flap {
+            transform: rotateY(180deg);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 78px;
+            margin: 5px;
+        }
+
+        .select {
+            color: red;
+            background-color: lightgray;
+        }
+
+    </style>
+</head>
+<body>
+<h1>五中七年七班点名系统</h1>
+<script>
+    var snameArr = ["倪志国","邵云成","李欣雅","王英奇","王美喆","陈宇","张皓宇","贾昊冉","李宇飞","吴天磊","杨悦"
+        ,"胡嘉成","李佳音","吴蓓贝","李伟凡","王世博","张天思","李晓伟","高晶","张明宇","张明慧","彭永欣","张思瑶","王欣蕾","杨浩"
+        ,"段毅殳","刘雨峰","杨晓芳","田源","张润泽","侯明希","谢可欣","王天翔","姚嘉俊","赵立鑫"
+        ,"赵智浩","佟欣宇","赵玉玲","王磊","姚明阳","高明杰","宿文涛","曲丽娜","陈文颖"];
+
+    let timer;
+    let isStart = false;
+    let divs;
+    let redIndex = 0;
+
+    snameArr = sortArr(snameArr);
+    for (let i = 0; i < snameArr.length; i++) {
+        let cover1 = document.createElement('div');
+        cover1.className = "cov cover1";
+        if (i == redIndex) {
+            cover1.className = "cov cover1 select"
+        }
+        cover1.innerHTML = snameArr[i];
+        cover1.onclick = function () {
+            console.log("click start button")
+            if (!isStart) {
+                timer = setInterval(function () {
+                    divs[redIndex].className = "cov cover1";
+                    redIndex = Math.floor(Math.random() * snameArr.length);
+                    divs[redIndex].className = "cov cover1 select"
+                }, 110)
+            } else {
+                clearInterval(timer);
+            }
+            isStart = !isStart;
+        }
+        document.body.appendChild(cover1);
+        if (i == snameArr.length - 1) {
+            divs = document.getElementsByTagName("div")
+            console.log(divs)
+        }
+    }
+
+    function sortArr(arr) {
+        let newArr = [];
+        for (var i = arr.length + 1; i > 0;) {
+            i--;
+            var rdm = Math.floor(Math.random() * arr.length)
+            if (!newArr.includes(arr[rdm])) {
+                newArr.push(arr[rdm])
+            } else {
+                if (newArr.length == arr.length) {
+                    break;
+                }
+                i++;
+            }
+        }
+        return newArr;
+    }
+</script>
+</body>
+</html>
